@@ -1,0 +1,28 @@
+.dashboard-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.dashboard-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+}
+
+.dashboard-title {
+  color: #7f2994; /* Roxo escuro */
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.dashboard-message {
+  color: #24c6c7; /* Azul vibrante */
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
