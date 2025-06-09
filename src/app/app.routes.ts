@@ -3,6 +3,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './pages/login/login.component';
 import { authGuard } from './guards/auth.guard';
 import { authChildGuard } from './guards/auth-child.guard';
+import { authMatchGuard } from './guards/auth-match.guard';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -15,6 +16,7 @@ export const routes: Routes = [
     { 
         path: 'pacientes',
         canActivateChild: [authChildGuard], // Guarda de rota responsável por proteger as rotas filhas
+        canMatch: [authMatchGuard], // Guarda de rota responsável por proteger o carregamento de modulos externos
         loadChildren: () => import('./pages/pacientes/pacientes.routes').then(m => m.routes)
     },
 ];
