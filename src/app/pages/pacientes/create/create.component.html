@@ -1,1 +1,44 @@
-<p>create works!</p>
+<!-- Formulário 01 -->
+<!-- <div>
+  <label>Pesquisar: </label>
+  <input type="text" [formControl]="text" />
+</div> -->
+
+
+<!-- Formulário 02 -->
+<form [formGroup]="pacienteForm">
+  <h2>Dados do Cliente</h2>
+  <label>Nome: </label>
+  <input type="text" formControlName="nome" /> <br>
+  <label>Idade: </label>
+  <input type="number" formControlName="idade" /> <br>
+  <ng-container formGroupName="endereco">
+    <h2>Dados do Endereço</h2>
+    <label>Rua: </label>
+    <input type="text" formControlName="rua" />
+    @if(pacienteForm.get('endereco.rua')?.invalid && pacienteForm.get('endereco.rua')?.touched){
+      <span>Preencha um nome para a rua</span>
+    }
+    <label>Cidade: </label>
+    <input type="text" formControlName="cidade" />
+    <label>Estado: </label>
+    <input type="text" formControlName="estado" />
+  </ng-container>
+  <br>
+  <br>
+  <label for="">Alergias</label>
+  <div formArrayName="alergias">
+    <button (click)="addAlergia()">Adicionar</button>
+    @for(alergia of alergias.controls; track $index; let i = $index){
+      <div [formGroupName]="i">
+        <label>Nome: </label>
+        <input type="text" formControlName="nome" />
+        <label>Descrição: </label>
+        <input type="text" formControlName="descricao" />
+        <button (click)="removeAlergia(i)">Remover</button>
+      </div>
+    }
+  </div>
+
+  <button (click)="clicou()" [disabled]="pacienteForm.invalid">Clique aqui</button>
+</form>

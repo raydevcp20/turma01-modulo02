@@ -1,0 +1,123 @@
+<div class="login-container">
+  <div class="login-card">
+    <h2 class="login-title">Desafio slide 02 - modulo 02</h2>
+    @if(isEdit){
+    <p class="login-subtitle">Editar produto</p>
+    }@else{
+    <p class="login-subtitle">Cadastro de produtos</p>
+    }
+    <form [formGroup]="createForm">
+      <div class="form-group">
+        <label for="nome">Nome</label>
+        <input
+          type="text"
+          id="nome"
+          formControlName="nome"
+          [ngStyle]="{
+                'border': createForm.get('nome').invalid && createForm.get('nome').touched ? '1px solid red' : '1px solid #7f2994',
+                'color': createForm.get('nome').invalid && createForm.get('nome').touched ? 'red' : '#7f2994',
+            }"
+        />
+        <!-- {{createForm.get('nome').errors | json }} -->
+      </div>
+      <div class="form-group">
+        <label for="sku">SKU</label>
+        <input
+          type="text"
+          id="sku"
+          formControlName="sku"
+          [ngStyle]="{
+                'border': createForm.get('sku').invalid && createForm.get('sku').touched ? '1px solid red' : '1px solid #7f2994',
+                'color': createForm.get('sku').invalid && createForm.get('sku').touched ? 'red' : '#7f2994',
+            }"
+        />
+      </div>
+      <div class="form-group">
+        <label for="linkImagem">Link</label>
+        <input
+          type="text"
+          id="linkImagem"
+          formControlName="link"
+          [ngStyle]="{
+                'border': createForm.get('link').invalid && createForm.get('link').touched ? '1px solid red' : '1px solid #7f2994',
+                'color': createForm.get('link').invalid && createForm.get('link').touched ? 'red' : '#7f2994',
+            }"
+        />
+      </div>
+      <div class="form-group">
+        <label for="preco">Preço</label>
+        <input
+          type="number"
+          id="preco"
+          formControlName="preco"
+          [ngStyle]="{
+                'border': createForm.get('preco').invalid && createForm.get('preco').touched ? '1px solid red' : '1px solid #7f2994',
+                'color': createForm.get('preco').invalid && createForm.get('preco').touched ? 'red' : '#7f2994',
+            }"
+        />
+      </div>
+      <div class="form-group">
+        <label for="qttEstoque">Quantidade em estoque</label>
+        <input
+          type="number"
+          id="qttEstoque"
+          formControlName="qttEstoque"
+          [ngStyle]="{
+                'border': createForm.get('qttEstoque').invalid && createForm.get('qttEstoque').touched ? '1px solid red' : '1px solid #7f2994',
+                'color': createForm.get('qttEstoque').invalid && createForm.get('qttEstoque').touched ? 'red' : '#7f2994',
+            }"
+        />
+      </div>
+      @if(!isEdit){
+          <ng-container formGroupName="endereco">
+              <div class="form-group">
+                <label for="rua">rua</label>
+                <input type="text" id="rua" formControlName="rua"/>
+              </div>
+          </ng-container>
+      }
+      <div class="form-group">
+        <label for="descricao">Descrição</label>
+        <textarea
+          id="descricao"
+          placeholder="Digite sua senha"
+          formControlName="descricao"
+          [ngStyle]="{
+                'border': createForm.get('descricao').invalid && createForm.get('descricao').touched ? '1px solid red' : '1px solid #7f2994',
+                'color': createForm.get('descricao').invalid && createForm.get('descricao').touched ? 'red' : '#7f2994',
+            }"
+        ></textarea>
+      </div>
+      <div class="form-group">
+        <label for="categoria">Categoria</label>
+        <select
+          id="categoria"
+          formControlName="categoria"
+          [ngStyle]="{
+                'border': createForm.get('categoria').invalid && createForm.get('categoria').touched ? '1px solid red' : '1px solid #7f2994',
+            }"
+        >
+          <option value="eletronicos">Eletrônicos</option>
+          <option value="roupas">Roupas</option>
+          <option value="alimentos">Alimentos</option>
+          <option value="outros">Outros</option>
+        </select>
+      </div>
+      <button
+        type="submit"
+        class="login-button margin-bottom"
+        (click)="salvarProduto()"
+        [disabled]="createForm.invalid"
+      >
+        @if(isEdit){ 
+            Editar 
+        }@else{ 
+            Salvar 
+        }
+      </button>
+      <button type="submit" class="login-button" (click)="limparProduto()">
+        Limpar
+      </button>
+    </form>
+  </div>
+</div>
