@@ -7,5 +7,17 @@ import { Component } from '@angular/core';
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent {
+  text: string = 'current value dashboard';
 
+  constructor() {}
+
+  ngAfterViewInit(){
+    console.log("ngAfterViewInit do pai");
+  }
+
+  ngAfterContentInit(){
+    console.log("ngAfterContentInit do pai");
+  }
 }
+
+
