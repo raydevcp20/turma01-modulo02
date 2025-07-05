@@ -27,3 +27,29 @@
   font-size: 1.2rem;
   line-height: 1.5;
 }
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 10px;
+  transition: color 0.3s ease;
+}
+
+/* Estado não curtido */
+.not-liked::before {
+  content: '♡';
+  color: gray;
+  transition: color 0.3s ease;
+}
+
+/* Estado curtido */
+.liked::before {
+  content: '♥';
+  color: red;
+  transition: color 0.3s ease;
+}

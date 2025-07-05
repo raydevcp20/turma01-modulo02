@@ -1,0 +1,28 @@
+{
+    "pacientes": [
+        {
+            "id": 1,
+            "name": "John Doe",
+            "age": 30,
+            "email": "john@gmail.com",
+            "fav": true,
+            "condicao": "Aguardando consulta"
+        },
+        {
+            "id": 2,
+            "name": "Jane Smith",
+            "age": 25,
+            "email": "jane@gmail.com",
+            "fav": false,
+            "condicao": "Em tratamento"
+        },
+        {
+            "id": 3,
+            "name": "Alice Johnson",
+            "age": 28,
+            "email": "alice@gmail.com",
+            "fav": true,
+            "condicao": "Recuperado"
+        }
+    ]
+}

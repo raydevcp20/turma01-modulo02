@@ -1,1 +1,45 @@
-<p>pacientes works!</p>
+<div class="patient-list-container display-align-end">
+  <div class="dropdown-container">
+    <button class="dropdown-button" (click)="toggleDropdown()">
+      {{ selectedFilter || "Filtrar por" }}
+      <span class="arrow">{{ isDropdownOpen ? "▲" : "▼" }}</span>
+    </button>
+    @if(isDropdownOpen){
+    <ul class="dropdown-list">
+      @for(option of filterOptions; track option) {
+      <li
+        [class.selected]="selectedFilter === option"
+        (click)="applyFilter(option)"
+      >
+        {{ option }}
+      </li>
+      }
+    </ul>
+    }
+  </div>
+  <div class="list">
+      <h1>Lista de Pacientes</h1>
+      <table class="patient-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Idade</th>
+            <th>Condição</th>
+            <th>Favorito?</th>
+          </tr>
+        </thead>
+        <tbody >
+          @for(patient of patients; track patient.id) {
+          <tr appHighlight class="list-item">
+            <td>{{ patient.id }}</td>
+            <td>{{ patient.name }}</td>
+            <td>{{ patient.age }}</td>
+            <td>{{ patient.condicao }}</td>
+            <td>{{ patient.fav }}</td>
+          </tr>
+          }
+        </tbody>
+      </table>
+  </div>
+</div>
