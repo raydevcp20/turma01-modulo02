@@ -16,13 +16,10 @@ export class HighlightDirective {
   }
   
   @HostListener('mouseleave') onMouseLeave() {
-    // this.class = false;
     this.highlight('transparent');
   }
 
   highlight(color: string) {
-    console.log('Highlighting element:', this.backgroundColor);
-    console.log('Highlighting class:', this.class);
     this.backgroundColor = color;
   }
 }
