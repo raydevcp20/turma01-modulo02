@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,6 +9,7 @@ import { Component } from '@angular/core';
 })
 export class DashboardComponent {
   text: string = 'current value dashboard';
+  router = inject(Router);
 
   constructor() {}
 
@@ -17,6 +19,10 @@ export class DashboardComponent {
 
   ngAfterContentInit(){
     console.log("ngAfterContentInit do pai");
+  }
+
+  navigateTo(page: string) {
+    this.router.navigateByUrl(page);
   }
 }
 

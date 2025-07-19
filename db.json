@@ -6,7 +6,8 @@
             "age": 30,
             "email": "john@gmail.com",
             "fav": true,
-            "condicao": "Aguardando consulta"
+            "condicao": "Aguardando consulta",
+            "selected": false
         },
         {
             "id": 2,
@@ -14,7 +15,8 @@
             "age": 25,
             "email": "jane@gmail.com",
             "fav": false,
-            "condicao": "Em tratamento"
+            "condicao": "Em tratamento",
+            "selected": false
         },
         {
             "id": 3,
@@ -22,7 +24,8 @@
             "age": 28,
             "email": "alice@gmail.com",
             "fav": true,
-            "condicao": "Recuperado"
+            "condicao": "Recuperado",
+            "selected": true
         }
     ]
 }

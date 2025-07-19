@@ -4,6 +4,10 @@
     <p class="dashboard-message">
       Aqui você pode gerenciar suas tarefas e acompanhar o progresso do seu trabalho. Aproveite a experiência!
     </p>
+    <div class="dashboard-actions">
+      <button class="dashboard-button" (click)="navigateTo('/pacientes')">Lista de Pacientes</button>
+      <button class="dashboard-button" (click)="navigateTo('/pacientes/criar')">Criar Paciente</button>
+    </div>
   </div>
 </div>
 

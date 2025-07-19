@@ -1,45 +1,39 @@
 <div class="patient-list-container display-align-end">
-  <div class="dropdown-container">
-    <button class="dropdown-button" (click)="toggleDropdown()">
-      {{ selectedFilter || "Filtrar por" }}
-      <span class="arrow">{{ isDropdownOpen ? "▲" : "▼" }}</span>
-    </button>
-    @if(isDropdownOpen){
-    <ul class="dropdown-list">
-      @for(option of filterOptions; track option) {
-      <li
-        [class.selected]="selectedFilter === option"
-        (click)="applyFilter(option)"
-      >
-        {{ option }}
-      </li>
-      }
-    </ul>
-    }
-  </div>
   <div class="list">
-      <h1>Lista de Pacientes</h1>
-      <table class="patient-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Idade</th>
-            <th>Condição</th>
-            <th>Favorito?</th>
-          </tr>
-        </thead>
-        <tbody >
-          @for(patient of patients; track patient.id) {
-          <tr appHighlight class="list-item">
-            <td>{{ patient.id }}</td>
-            <td>{{ patient.name }}</td>
-            <td>{{ patient.age }}</td>
-            <td>{{ patient.condicao }}</td>
-            <td>{{ patient.fav }}</td>
-          </tr>
+    <h1>Lista de Pacientes</h1>
+    <div>
+      <div class="filter-area">
+        <app-input [type]="'text'" #inputComponent></app-input>
+        <div class="dropdown-container">
+          <button class="dropdown-button" (click)="toggleDropdown()">
+            {{ selectedFilter || "Filtrar por" }}
+            <span class="arrow">{{ isDropdownOpen ? "▲" : "▼" }}</span>
+          </button>
+          @if(isDropdownOpen){
+          <ul class="dropdown-list">
+            @for(option of filterOptions; track option) {
+            <li
+              [class.selected]="selectedFilter === option"
+              (click)="applyFilter(option)"
+            >
+              {{ option }}
+            </li>
+            }
+          </ul>
           }
-        </tbody>
-      </table>
+        </div>
+        <button type="button" (click)="search()">Pesquisar</button>
+      </div>
+      <div class="table-list-container">
+        <div>
+          <h3>Lista de pacientes</h3>
+          <app-table [items]="filteredItems" ></app-table>
+        </div>
+        <div>
+          <h3>Adicionar aos favoritos</h3>
+          <app-list [items]="patients" #lista></app-list>
+          <button type="button" (click)="getSelectedItems(lista)">Enviar</button>
+        </div>
+      </div>
   </div>
 </div>

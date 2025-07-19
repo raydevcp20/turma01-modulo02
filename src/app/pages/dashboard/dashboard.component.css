@@ -28,16 +28,19 @@
   line-height: 1.5;
 }
 
-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
+.dashboard-actions {
+  margin-top: 2rem;
+}
+
+.dashboard-actions button {
+  background-color: #7f2994; /* Roxo escuro */
+  color: white;
   border: none;
-  background: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
   cursor: pointer;
-  padding: 10px;
-  transition: color 0.3s ease;
+  margin: 0.5rem;
+  transition: background-color 0.3s ease;
 }
 
 /* Estado não curtido */

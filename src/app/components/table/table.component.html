@@ -1,0 +1,20 @@
+<table class="patient-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>Idade</th>
+      <th>Condição</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(item of items(); track item.id) {
+    <tr class="list-item" appHighlight>
+      <td>{{ item.id }}</td>
+      <td>{{ item.name }}</td>
+      <td>{{ item.age }}</td>
+      <td>{{ item.condicao }}</td>
+    </tr>
+    }
+  </tbody>
+</table>

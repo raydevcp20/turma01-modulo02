@@ -9,7 +9,7 @@ import { CriarComponent } from './desafio/produtos/criar/criar.component';
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
-    { path: 'desafio/produtos/criar', component: CriarComponent },
+    // { path: 'desafio/produtos/criar', component: CriarComponent },
     { 
         path: 'dashboard', 
         component: DashboardComponent, 

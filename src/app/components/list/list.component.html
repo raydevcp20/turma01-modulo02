@@ -1,0 +1,13 @@
+<div class="multi-select-container">
+    @for(item of items(); track item.id) {
+        <div class="item">
+          <label>
+            <input
+              type="checkbox"
+              [(ngModel)]="item.selected"
+            />
+            {{ item.name }}
+          </label>
+        </div>
+    }
+</div>

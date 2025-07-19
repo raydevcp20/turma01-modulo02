@@ -1,0 +1,36 @@
+.multi-select-container {
+  border: 1px solid #e0e0e0;
+  padding: 1rem;
+  border-radius: 12px;
+  background-color: #fafafa;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: background 0.3s;
+  cursor: pointer;
+}
+
+.item:hover {
+  background-color: #f0f0f0;
+}
+
+.item input[type="checkbox"] {
+  margin-right: 0.75rem;
+  width: 18px;
+  height: 18px;
+  accent-color: #0a66d8; /* cor azul do seu projeto, opcional */
+}
+
+.item label {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+}
