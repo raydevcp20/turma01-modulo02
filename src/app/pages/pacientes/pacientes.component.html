@@ -26,12 +26,12 @@
       </div>
       <div class="table-list-container">
         <div>
-          <h3>Lista de pacientes</h3>
-          <app-table [items]="filteredItems" ></app-table>
+          <h3>Lista de pacientes - {{countPatients()}}</h3>
+          <app-table [items]="filteredItems()" ></app-table>
         </div>
         <div>
           <h3>Adicionar aos favoritos</h3>
-          <app-list [items]="patients" #lista></app-list>
+          <app-list [items]="patients()" #lista></app-list>
           <button type="button" (click)="getSelectedItems(lista)">Enviar</button>
         </div>
       </div>

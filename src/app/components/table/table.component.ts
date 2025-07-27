@@ -1,4 +1,4 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, effect, inject, input } from '@angular/core';
 import { PacienteService } from '../../services/paciente.service';
 import { HighlightDirective } from '../../directives/highlight.directive';
 
@@ -11,7 +11,14 @@ import { HighlightDirective } from '../../directives/highlight.directive';
 export class TableComponent {
   items = input<any[]>([]);
 
+  constructor(){
+    effect(() => {
+      console.log('Table Items:', this.items());
+    });
+  }
+
   ngOnInit(){
+    
   }
 
 }

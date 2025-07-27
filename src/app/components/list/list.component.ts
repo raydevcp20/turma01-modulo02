@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -9,10 +9,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class ListComponent {
   items = input<any[]>([]);
-
-  toggleItem(item: any): void {
-    item.selected = !item.selected;
-  }
+  countItems = computed(() => this.items().length);
 
   getSelectedItems(): any[] {
     return this.items().filter(item => item.selected);

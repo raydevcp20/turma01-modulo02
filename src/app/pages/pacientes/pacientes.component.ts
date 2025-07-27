@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, inject, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Component, computed, effect, ElementRef, HostListener, inject, QueryList, signal, ViewChild, ViewChildren } from '@angular/core';
 import { PacienteService } from '../../services/paciente.service';
 import { HighlightDirective } from '../../directives/highlight.directive';
 import { InputComponent } from '../../components/input/input.component';
@@ -12,16 +12,28 @@ import { ListComponent } from '../../components/list/list.component';
   styleUrl: './pacientes.component.css'
 })
 export class PacientesComponent {
-  filteredItems: any[] = [];
-  patients: any[] = [];
+  filteredItems = signal([]);
+  patients = signal([]);
+  countPatients = computed(() => this.patients().length);
   pacienteService = inject(PacienteService);
-  constructor() {}
+  constructor() {
+    effect(()=>{
+      console.log('Pacientes:', this.patients());
+      if(this.patients().length > 0) {
+        this.filteredItems.set([...this.patients()]);
+      }
+    })
+
+    effect(()=>{
+      console.log('Filtered Items:', this.filteredItems());
+    })
+  }
 
   ngOnInit() {
     this.pacienteService.listarPacientes().subscribe({
       next: (data: any) => {
-        this.patients = data;
-        this.filteredItems = [...this.patients]; // Initialize filtered items
+        this.patients.set(data);
+        this.filteredItems.set([...this.patients()]);
       },
       error: (error: any) => {
         console.error('Erro ao listar pacientes:', error);
@@ -61,9 +73,9 @@ export class PacientesComponent {
     this.isDropdownOpen = false;
 
     if (option === 'Todos') {
-      this.filteredItems = [...this.patients];
+      this.filteredItems.set([...this.patients()]);
     } else if (option === 'Favoritos') {
-      this.filteredItems = this.patients.filter(item => item.fav);
+      this.filteredItems.set(this.patients().filter((item:any) => item.fav));
     }
   }
 }
