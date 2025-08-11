@@ -6,7 +6,9 @@
 }
 
 body {
-  font-family: 'Arial', sans-serif;
-  background-color: #e0cced;; /* Light background for contrast */
+  background-color: #e0cced; /* Light background for contrast */
   color: #333; /* Dark text for readability */
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
