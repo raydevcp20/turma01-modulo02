@@ -1,0 +1,31 @@
+.create-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.title {
+  color: #7f2994; /* Roxo escuro */
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.form-group {
+  margin-top: 1rem;
+  
+}
+
+mat-card{
+    width: 50%;
+}
+
+mat-form-field{
+  width: 100%;
+}
+
+.mat-login-button{
+  width: 100%;
+  border-radius: 4px;
+  background-color: #7f2994 !important;
+}
