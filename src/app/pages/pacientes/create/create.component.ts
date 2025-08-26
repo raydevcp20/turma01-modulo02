@@ -12,16 +12,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create',
   imports: [
     ReactiveFormsModule,
+    MatGridListModule,
     MatCardModule,
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    MatGridListModule,
   ],
   templateUrl: './create.component.html',
   styleUrl: './create.component.css',
@@ -29,64 +30,64 @@ import { MatGridListModule } from '@angular/material/grid-list';
 export class CreateComponent {
   text = new FormControl({ value: 'Rayane', disabled: false });
   fb = inject(FormBuilder);
-  pacienteForm: FormGroup = this.fb.group({
-    nome: ['', [Validators.minLength(3), Validators.required]],
-    idade: ['', Validators.required],
-    endereco: this.fb.group({
-      rua: ['', Validators.required],
-      cidade: [''],
-      estado: [{ value: '', disabled: true }],
+  router = inject(Router);
+  pacientForm: FormGroup = this.fb.group({
+    name: ['', [Validators.minLength(3), Validators.required]],
+    age: ['', Validators.required],
+    address: this.fb.group({
+      street: ['', Validators.required],
+      city: [''],
+      state: [{ value: '', disabled: true }],
     }),
-    alergias: this.fb.array([]),
+    allergies: this.fb.array([
+      this.fb.group({
+        name: [''],
+        description: [''],
+      }),
+    ]),
   });
 
-  constructor() {
-    // let idadeField = fb.control('');
-    // this.pacienteForm =
-  }
+  constructor() {}
 
-  validadorNome(control: any) {
+  nameValidator(control: any) {
     if (control.value === 'Rayane') {
-      return { nomeInvalido: { atual: control.value, valorErrado: 'Rayane' } };
+      return { invalidName: { actual: control.value, wrongName: 'Rayane' } };
     }
     return null;
   }
 
   ngOnInit() {
-    // console.log("valor inicial: ", this.text.value);
-    console.log('alergias: ', this.alergias.value);
-    console.log('alergias controls: ', this.alergias.controls);
+    console.log('alergias: ', this.allergies.value);
+    console.log('alergias controls: ', this.allergies.controls);
   }
 
-  clicou() {
-    if (this.pacienteForm.get('alergias')?.value.length === 0) {
+  sendPacient() {
+    if (this.pacientForm.get('allergies')?.value.length === 0) {
       return alert('Você precisa adicionar pelo menos uma alergia!');
     }
-    console.log('Erros: ', this.pacienteForm.get('nome')?.errors);
+    console.log('Erros: ', this.pacientForm.get('nome')?.errors);
     console.log('depois que digitei: ', this.text.value);
-    console.log('formulário com formBuilder: ', this.pacienteForm.value);
-    console.log('alergias.value: ', this.alergias.value);
+    console.log('formulário com formBuilder: ', this.pacientForm.value);
+    console.log('alergias.value: ', this.allergies.value);
   }
 
-  inputTeste() {
-    console.log('inputTeste: ', this.text.value);
+  get allergies() {
+    return this.pacientForm.get('allergies') as FormArray;
   }
 
-  get alergias() {
-    return this.pacienteForm.get('alergias') as FormArray;
+  addAllergy(): void {
+    const allergyForm = this.fb.group({
+      name: ['', Validators.required],
+      description: [''],
+    });
+    this.allergies.push(allergyForm);
   }
 
-  removeAlergia(index: number) {
-    this.alergias.removeAt(index);
-    console.log('alergias após remoção: ', this.alergias.value);
-  }
+  // removeAllergy(index: number): void {
+  //   this.allergies.removeAt(index);
+  // }
 
-  addAlergia() {
-    this.alergias.push(
-      this.fb.group({
-        nome: ['', Validators.required],
-        descricao: ['', Validators.required],
-      })
-    );
+  back() {
+    this.router.navigate(['/dashboard']);
   }
 }

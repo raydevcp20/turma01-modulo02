@@ -1,31 +1,149 @@
-.create-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+.create-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .title {
-  color: #7f2994; /* Roxo escuro */
+  color: #7f2994;
   font-size: 1.8rem;
   margin-bottom: 0.5rem;
 }
 
 .form-group {
   margin-top: 1rem;
-  
 }
 
-mat-card{
-    width: 50%;
+mat-card {
+  width: 50%;
 }
 
-mat-form-field{
+mat-form-field {
   width: 100%;
 }
 
-.mat-login-button{
+.violet {
+  background-color: #e0cced !important;
+  color: #181818 !important;
+}
+
+.purple {
+  background-color: #9c27b0 !important;
+}
+
+.mat-login-button {
   width: 100%;
   border-radius: 4px;
-  background-color: #7f2994 !important;
+}
+
+.margin-right {
+  margin-right: 1rem;
+}
+
+.allergies-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.allergies-container button {
+  align-self: flex-start;
+}
+
+:root{
+  --bg: #ffffff;
+  --card: #f7f7f9;
+  --text: #222;
+  --muted: #666;
+  --accent: #0A66D8;  /* mude se quiser outra cor */
+  --ring: rgba(10, 102, 216, .15);
+  --radius: 14px;
+  --shadow: 0 2px 12px rgba(0,0,0,.06);
+}
+
+.alergias{
+  max-width: 760px;
+  margin: 24px auto;
+  padding: 0 16px;
+  color: var(--text);
+  background: var(--bg);
+}
+
+.alergias h2{
+  font-size: 1.4rem;
+  margin: 0 0 12px;
+  letter-spacing: .2px;
+}
+
+.alergias-lista{
+  margin: 0;
+  padding: 0;
+  overflow-y: scroll;
+  height: 200px;
+}
+
+.alergia-item{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+  padding: 14px 16px;
+  margin: 10px 0;
+  background: var(--card);
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+}
+
+.alergia-item:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0,0,0,.08);
+  border-color: var(--ring);
+}
+
+.alergia-nome{
+  margin: 0;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.alergia-nome::before{
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px var(--ring);
+}
+
+.alergia-descricao{
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+  font-size: .95rem;
+}
+
+/* Truncar descrição opcionalmente em 3 linhas */
+.alergia-descricao.truncar{
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Suporte a tema escuro opcional */
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg: #0b0d10;
+    --card: #12161a;
+    --text: #e9edf1;
+    --muted: #b2b9c2;
+    --shadow: 0 2px 12px rgba(0,0,0,.4);
+    --ring: rgba(10, 102, 216, .25);
+  }
 }

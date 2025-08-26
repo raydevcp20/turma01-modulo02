@@ -1,16 +1,14 @@
 <!-- Formulário 01 -->
-<!-- <div>
-  <label>Pesquisar: </label>
-  <input type="text" [formControl]="text" />
-</div> -->
 <div class="create-container">
   <mat-card appearance="outlined">
     <mat-card-header>
       <mat-card-title class="title">Ficha de cadastro</mat-card-title>
     </mat-card-header>
+
     <mat-card-content class="form-group">
-      <form [formGroup]="pacienteForm">
+      <form [formGroup]="pacientForm">
         <mat-grid-list cols="3" rowHeight="70px">
+          <!-- Dados Cliente -->
           <mat-grid-tile [colspan]="3">
             <h2>Dados do Cliente</h2>
           </mat-grid-tile>
@@ -18,28 +16,38 @@
           <mat-grid-tile [colspan]="2">
             <mat-form-field>
               <mat-label>Nome:</mat-label>
-              <input matInput formControlName="nome" />
+              <input matInput formControlName="name" />
+              @if(pacientForm.get('name')?.invalid &&
+              pacientForm.get('name')?.touched){
+              <mat-error> O nome deve ter pelo menos 3 caracteres </mat-error>
+              }
             </mat-form-field>
           </mat-grid-tile>
 
           <mat-grid-tile [colspan]="1">
             <mat-form-field>
               <mat-label>Idade:</mat-label>
-              <input matInput formControlName="idade" />
+              <input matInput formControlName="age" type="number" />
+              @if(pacientForm.get('age')?.invalid &&
+              pacientForm.get('age')?.touched){
+              <mat-error> Informe a idade </mat-error>
+              }
             </mat-form-field>
           </mat-grid-tile>
 
+          <!-- Dados Endereço -->
           <mat-grid-tile [colspan]="3">
             <h2>Dados do Endereço</h2>
           </mat-grid-tile>
 
-          <ng-container formGroupName="endereco">
+          <ng-container formGroupName="address">
             <mat-grid-tile [colspan]="1">
               <mat-form-field>
                 <mat-label>Rua</mat-label>
-                <input matInput formControlName="rua" />
-                @if (pacienteForm.get('endereco.rua')?.invalid && pacienteForm.get('endereco.rua')?.touched) {
-                  <mat-error>Preencha um nome para a rua</mat-error>
+                <input matInput formControlName="street" />
+                @if(pacientForm.get('address.street')?.invalid &&
+                pacientForm.get('address.street')?.touched){
+                <mat-error> Preencha um nome para a rua </mat-error>
                 }
               </mat-form-field>
             </mat-grid-tile>
@@ -47,40 +55,99 @@
             <mat-grid-tile [colspan]="1">
               <mat-form-field>
                 <mat-label>Cidade:</mat-label>
-                <input matInput formControlName="cidade" />
+                <input matInput formControlName="city" />
               </mat-form-field>
             </mat-grid-tile>
 
             <mat-grid-tile [colspan]="1">
               <mat-form-field>
                 <mat-label>Estado:</mat-label>
-                <input matInput formControlName="estado" />
+                <input matInput formControlName="state" />
               </mat-form-field>
             </mat-grid-tile>
           </ng-container>
+        </mat-grid-list>
+        <mat-grid-list cols="5" [rowHeight]="'70px'" class="">
+          <mat-grid-tile [colspan]="5">
+            <h2>Alergias</h2>
+          </mat-grid-tile>
 
+          <mat-grid-tile [colspan]="2">
+            <mat-form-field>
+              <mat-label>Nome</mat-label>
+              <input matInput />
+            </mat-form-field>
+          </mat-grid-tile>
 
+          <mat-grid-tile [colspan]="2">
+            <mat-form-field>
+              <mat-label>Descrição</mat-label>
+              <input matInput />
+            </mat-form-field>
+          </mat-grid-tile>
 
-         
-          <!-- <label for="">Alergias</label>
-          <div formArrayName="alergias">
-            <button (click)="addAlergia()">Adicionar</button>
-            @for(alergia of alergias.controls; track $index; let i = $index){
-            <div [formGroupName]="i">
-              <label>Nome: </label>
-              <input type="text" formControlName="nome" />
-              <label>Descrição: </label>
-              <input type="text" formControlName="descricao" />
-              <button (click)="removeAlergia(i)">Remover</button>
-            </div>
-            }
-          </div> -->
+          <mat-grid-tile [colspan]="1">
+            <button
+              type="button"
+              (click)="addAllergy()"
+              mat-flat-button
+              class="mat-login-button purple"
+            >
+              Adicionar Alergia
+            </button>
+          </mat-grid-tile>
 
+        </mat-grid-list>
+        <mat-grid-list cols="4" [rowHeight]="'200px'">
+
+          <mat-grid-tile [colspan]="4">
+            <dl class="alergias-lista">
+              <div class="alergia-item">
+                <dt class="alergia-nome">Amendoim</dt>
+                <dd class="alergia-descricao">
+                  Reação anafilática; carregar adrenalina autoinjetável.
+                  Evitar todos os derivados.
+                </dd>
+              </div>
+
+              <div class="alergia-item">
+                <dt class="alergia-nome">Penicilina</dt>
+                <dd class="alergia-descricao">
+                  Urticária e angioedema após uso. Registrar no prontuário e
+                  evitar betalactâmicos relacionados.
+                </dd>
+              </div>
+
+              <div class="alergia-item">
+                <dt class="alergia-nome">Ácaros (poeira)</dt>
+                <dd class="alergia-descricao">
+                  Rinite alérgica sazonal. Recomenda-se capas antiácaro e
+                  higienização frequente.
+                </dd>
+              </div>
+            </dl>
+          </mat-grid-tile>
         </mat-grid-list>
       </form>
     </mat-card-content>
+
+    <!-- Ações -->
     <mat-card-actions>
-      <button (click)="clicou()" [disabled]="pacienteForm.invalid" mat-flat-button class="mat-login-button">
+      <button
+        type="button"
+        (click)="back()"
+        mat-flat-button
+        class="mat-login-button violet margin-right"
+      >
+        Voltar
+      </button>
+      <button
+        type="button"
+        (click)="sendPacient()"
+        [disabled]="pacientForm.invalid"
+        mat-flat-button
+        class="mat-login-button purple"
+      >
         Salvar
       </button>
     </mat-card-actions>
